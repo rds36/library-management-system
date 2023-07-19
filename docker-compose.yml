@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  agit-technical-test-postgres:
+    container_name: "agit-technical-test-postgres"
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: agit-library
