@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "e17e2470-5da6-48f5-afe4-4d6799a429b0",
+		"name": "Library System Management (AGIT)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17958423"
+	},
+	"item": [
+		{
+			"name": "Get All Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/books",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Books with Filter Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/books/filter?status=1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"books",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": \"A0001\",\n    \"title\": \"Harry Potter dan Batu Bertuah\",\n    \"author\": \"J.K Rowling\",\n    \"publisher\": \"Gramedia\",\n    \"publishDate\": \"1997-06-29\",\n    \"totalPage\": \"384\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/books/add",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"books",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book Data",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": \"A0001\",\n    \"author\": \"J.K. Rowling\",\n    \"title\": \"Harry Potter\",\n    \"publisher\": \"Gramedia Indonesia\",\n    \"publishDate\": \"2020-01-20\",\n    \"totalPage\": \"425\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/books/data/update",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"books",
+						"data",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book Status Data",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": \"A0001\",\n    \"status\": 1,\n    \"borrowedBy\": \"Rangga\",\n    \"borrowedAt\": \"2024-01-20T00:00:00\",\n    \"returnedAt\": \"2024-01-22T00:00:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/books/status/update",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"books",
+						"status",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": \"A0001\",\n    \"title\": \"Harry Potter dan Batu Bertuah\",\n    \"author\": \"J.K Rowling\",\n    \"publisher\": \"Gramedia\",\n    \"publishDate\": \"1997-06-29\",\n    \"totalPage\": \"384\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/books/A0001",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"books",
+						"A0001"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

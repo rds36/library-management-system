@@ -1,0 +1,203 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:9090
+    description: Generated server url
+paths:
+  /books/status/update:
+    put:
+      tags:
+        - book-controller
+      operationId: updateBookStatusData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBookStatusDataRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+  /books/data/update:
+    put:
+      tags:
+        - book-controller
+      operationId: updateBookData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBookDataRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+  /books/add:
+    post:
+      tags:
+        - book-controller
+      operationId: createBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+  /books:
+    get:
+      tags:
+        - book-controller
+      operationId: getAllBooks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+  /books/filter:
+    get:
+      tags:
+        - book-controller
+      operationId: getAllBooksWithFilterStatus
+      parameters:
+        - name: status
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+  /books/{bookId}:
+    delete:
+      tags:
+        - book-controller
+      operationId: deleteBook
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    UpdateBookStatusDataRequest:
+      required:
+        - bookId
+        - borrowedAt
+        - borrowedBy
+        - returnedAt
+        - status
+      type: object
+      properties:
+        bookId:
+          type: string
+        status:
+          type: integer
+          format: int32
+        borrowedBy:
+          type: string
+        borrowedAt:
+          type: string
+        returnedAt:
+          type: string
+    UpdateBookDataRequest:
+      required:
+        - bookId
+      type: object
+      properties:
+        bookId:
+          type: string
+        title:
+          type: string
+        author:
+          type: string
+        publisher:
+          type: string
+        publishDate:
+          type: string
+        totalPage:
+          type: string
+    CreateBookRequest:
+      required:
+        - author
+        - bookId
+        - publishDate
+        - publisher
+        - title
+        - totalPage
+      type: object
+      properties:
+        bookId:
+          type: string
+        title:
+          type: string
+        author:
+          type: string
+        publisher:
+          type: string
+        publishDate:
+          type: string
+        totalPage:
+          type: string
+    Book:
+      type: object
+      properties:
+        bookId:
+          type: string
+        title:
+          type: string
+        author:
+          type: string
+        publisher:
+          type: string
+        publishDate:
+          type: string
+          format: date
+        totalPage:
+          type: string
+        status:
+          type: integer
+          format: int32
+        borrowedBy:
+          type: string
+        borrowedAt:
+          type: string
+          format: date-time
+        returnedAt:
+          type: string
+          format: date-time
